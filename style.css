@@ -21,3 +21,24 @@ body{
     letter-spacing: 5px;
     word-spacing: 8px;
 }
+
+.main-container{
+    width: 90%;
+}
+
+.players{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 10px;
+}
+.player{
+    background-color: black;
+    border: 1px solid gray;
+    padding-bottom: 10px;;
+}
+img{
+    width:100%;
+    height: 250px;
+    object-fit: cover;
+}
