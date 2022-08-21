@@ -1,0 +1,18 @@
+body{
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.banner-container{
+    background: rgba(0, 0, 0, 0.384) url("./images/crieckt-banner.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: darken;
+
+    height: 500px;
+    width: 90%;
+    
+}
