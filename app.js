@@ -1,4 +1,5 @@
-// common function
+/* *******************The common functions************************* */
+// Get input-field value by ID
 function getIdElementValue(id) {
     let value = parseFloat(document.getElementById(id).value);
     if (isNaN(value)) {
@@ -6,18 +7,32 @@ function getIdElementValue(id) {
     }
     return value;
 }
-
-// common function
+// Get element by ID
 function getIdElement(id) {
     return document.getElementById(id);
 }
+/* **************************************************** */
+
+// check if the user press any wrong key
+let allInputs = document.querySelectorAll("input");
+for (let input of allInputs) {
+    input.addEventListener("keyup", function () {
+        if (isNaN(input.value) === true) {
+            alert("Sorry! Only Positive Number is allowed");
+            input.value = "";
+        } else if (parseFloat(input.value) < 0) {
+            alert("Sorry! Negative number is not allowed");
+            input.value = "";
+        }
+    });
+}
 
 let selectedPlayerUl = getIdElement("player-list");
-
 let playerDiv = document.querySelectorAll(".player");
+
+// player selection
 for (let player of playerDiv) {
     let playerBtn = player.querySelector("#playerButton");
-    playerBtn.style.cursor = "pointer";
     playerBtn.addEventListener("click", function () {
         if (selectedPlayerUl.children.length === 5) {
             alert("You can't add more than 5 players");
@@ -37,22 +52,12 @@ for (let player of playerDiv) {
         span.innerText = nameText;
         li.appendChild(span);
 
+        // finally add the list-item
         selectedPlayerUl.appendChild(li);
     });
 }
 
-let allInputs = document.querySelectorAll("input");
-for (let input of allInputs) {
-    input.addEventListener("keyup", function () {
-        if (isNaN(input.value) === true) {
-            alert("Sorry! Only Positive Number is allowed");
-            input.value = "";
-        } else if (parseFloat(input.value) < 0) {
-            alert("Sorry! Negative number is not allowed");
-            input.value = "";
-        }
-    });
-}
+// calculate all players cost(without any other cost)
 
 getIdElement("calculate-btn").addEventListener("click", function () {
     let playerCostText = getIdElement("player-expenses");
@@ -60,16 +65,18 @@ getIdElement("calculate-btn").addEventListener("click", function () {
 
     let totalAddedPlayer = parseFloat(selectedPlayerUl.children.length);
 
-
-    playerCostText.innerText = "$"+ (totalAddedPlayer * perPlayerPrice);
+    playerCostText.innerText = "$" + totalAddedPlayer * perPlayerPrice;
 });
 
-
+// Now, calculate all the cost including previous calculated players cost
 getIdElement("calculate-total-btn").addEventListener("click", function () {
-    let onlyPlayerCost = parseFloat(getIdElement("player-expenses").innerText.split('$')[1]);
+    // get only the total player balance without dollar sign
+    let onlyPlayerCost = parseFloat(
+        getIdElement("player-expenses").innerText.split("$")[1]
+    );
     let managerCost = parseFloat(getIdElementValue("manager-cost"));
     let coachCost = parseFloat(getIdElementValue("coach-cost"));
-    let totalPrice = getIdElement('total');
+    let totalPrice = getIdElement("total");
 
-    totalPrice.innerText = "$" + (onlyPlayerCost + managerCost + coachCost)
+    totalPrice.innerText = "$" + (onlyPlayerCost + managerCost + coachCost);
 });
