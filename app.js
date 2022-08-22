@@ -40,6 +40,12 @@ for (let player of playerDiv) {
         }
 
         playerBtn.style.backgroundColor = "rgb(49, 49, 73)";
+        playerBtn.innerHTML = `
+        <i class="fas fa-check-circle me-2"></i>SELECTED
+        `;
+        // playerBtn.appendChild(symbol);
+        // playerBtn.innerText = 'SELECTED';
+        // playerBtn = symbol + playerBtn;
         playerBtn.setAttribute("disabled", true);
 
         let playerName = player.querySelector("#playerName");
